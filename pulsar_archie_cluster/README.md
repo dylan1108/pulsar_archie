@@ -41,7 +41,72 @@ Tips: It's recommend to stop all threads ( `./stop-all.sh` ) before you redeploy
  ## Full log example
 
 ```shell
-
+[2022-05-03 09:28:57] ====> Start to (re)deploy the pular archie-cluster of pulsar <====
+[2022-05-03 09:28:57] [1/9][√] Your OS is ready => GNU/Linux
+[2022-05-03 09:28:57] [2/9][√] JDK is ready => 1.8.0_311. Please check the version conflicts with Pulsar manually(JDK11+ is recommend).
+[2022-05-03 09:28:57] [3/9][√] Pulsar tarball is ready => apache-pulsar-2.9.1-bin.tar.gz
+[2022-05-03 09:28:57] [4/9][√] Your Ports are ready => Port list: 12181|22181|32181|19990|29990|39990|18001|18002|18003|18004|18005|18006|12888|13888|22888|23888|32888|33888|18443|28443|38443|16650|26650|36650|13181|23181|33181|18080|28080|38080|16651|26651|36651
+[2022-05-03 09:28:57] [5/9][√] Please check the disk's remaining capacity manually. It's should remaining more than 95%.
+doing start zookeeper ...
+starting zookeeper, logging to /opt/pulsar-archie-cluster/pulsar-1/logs/pulsar-zookeeper-yilami01.log
+Note: Set immediateFlush to true in conf/log4j2.yaml will guarantee the logging event is flushing to disk immediately. The default behavior is switched off due to performance considerations.
+doing start zookeeper ...
+starting zookeeper, logging to /opt/pulsar-archie-cluster/pulsar-2/logs/pulsar-zookeeper-yilami01.log
+Note: Set immediateFlush to true in conf/log4j2.yaml will guarantee the logging event is flushing to disk immediately. The default behavior is switched off due to performance considerations.
+doing start zookeeper ...
+starting zookeeper, logging to /opt/pulsar-archie-cluster/pulsar-3/logs/pulsar-zookeeper-yilami01.log
+Note: Set immediateFlush to true in conf/log4j2.yaml will guarantee the logging event is flushing to disk immediately. The default behavior is switched off due to performance considerations.
+[2022-05-03 09:28:57] [6/9][√] Your Zookeeper archie-cluster is all ready.
+[2022-05-03 09:28:57] [7/9][√] Your cluster metadata initialized in Zookeeper is ready.
+[2022-05-03 09:28:57] [8/9][√] Your cluster metadata test is ready. => {"serviceUrl":"http://192.168.0.10:18080","serviceUrlTls":"https://192.168.0.10:18443","brokerServiceUrl":"pulsar://192.168.0.10:16650","brokerServiceUrlTls":"pulsar+ssl://192.168.0.10:16651","brokerClientTlsEnabled":false,"tlsAllowInsecureConnection":false,"brokerClientTlsEnabledWithKeyStore":false,"brokerClientTlsTrustStoreType":"JKS"}
+doing start bookie ...
+starting bookie, logging to /opt/pulsar-archie-cluster/pulsar-1/logs/pulsar-bookie-yilami01.log
+Note: Set immediateFlush to true in conf/log4j2.yaml will guarantee the logging event is flushing to disk immediately. The default behavior is switched off due to performance considerations.
+doing start bookie ...
+starting bookie, logging to /opt/pulsar-archie-cluster/pulsar-2/logs/pulsar-bookie-yilami01.log
+Note: Set immediateFlush to true in conf/log4j2.yaml will guarantee the logging event is flushing to disk immediately. The default behavior is switched off due to performance considerations.
+doing start bookie ...
+starting bookie, logging to /opt/pulsar-archie-cluster/pulsar-3/logs/pulsar-bookie-yilami01.log
+Note: Set immediateFlush to true in conf/log4j2.yaml will guarantee the logging event is flushing to disk immediately. The default behavior is switched off due to performance considerations.
+[2022-05-03 09:28:57] [9/9][√] Your bookies is all ready.
+doing start broker ...
+starting broker, logging to /opt/pulsar-archie-cluster/pulsar-1/logs/pulsar-broker-yilami01.log
+Note: Set immediateFlush to true in conf/log4j2.yaml will guarantee the logging event is flushing to disk immediately. The default behavior is switched off due to performance considerations.
+doing start broker ...
+starting broker, logging to /opt/pulsar-archie-cluster/pulsar-2/logs/pulsar-broker-yilami01.log
+Note: Set immediateFlush to true in conf/log4j2.yaml will guarantee the logging event is flushing to disk immediately. The default behavior is switched off due to performance considerations.
+doing start broker ...
+starting broker, logging to /opt/pulsar-archie-cluster/pulsar-3/logs/pulsar-broker-yilami01.log
+Note: Set immediateFlush to true in conf/log4j2.yaml will guarantee the logging event is flushing to disk immediately. The default behavior is switched off due to performance considerations.
+[2022-05-03 09:28:57] [ list brokers ] -> pulsar-1/bin/pulsar-admin brokers list pulsar_archie_cluster
+"192.168.0.10:18080"
+"192.168.0.10:28080"
+[2022-05-03 09:28:57] [ create local cluster ] -> pulsar-1/bin/pulsar-admin clusters create pulsar_archie_cluster --url http://192.168.0.10:18080/
+2022-05-03T09:29:47,348-0700 [AsyncHttpClient-7-1] WARN  org.apache.pulsar.client.admin.internal.BaseResource - [http://192.168.0.10:18080/admin/v2/clusters/pulsar_archie_cluster] Failed to perform http put request: javax.ws.rs.ClientErrorException: HTTP 409 Conflict
+[2022-05-03 09:28:57] [ create tenant ] -> pulsar-1/bin/pulsar-admin tenants create t1 -c pulsar_archie_cluster
+[2022-05-03 09:28:57] [ create tenant/namespaces ] -> pulsar-1/bin/pulsar-admin namespaces create t1/ns1 -c pulsar_archie_cluster
+[2022-05-03 09:28:57] [ create second cluster ] -> pulsar-1/bin/pulsar-admin clusters create cluster_2 --url http://192.168.0.10:18080/
+[2022-05-03 09:28:57] [ create second tenant ] -> pulsar-1/bin/pulsar-admin tenants create t2 -c cluster_2
+[2022-05-03 09:28:57] [ create second tenant/namespaces ] -> pulsar-1/bin/pulsar-admin namespaces create t2/ns2 -c cluster_2
+[2022-05-03 09:28:57] [ list tenants ] -> pulsar-1/bin/pulsar-admin tenants list
+"public"
+"pulsar"
+"t1"
+"t2"
+[2022-05-03 09:28:57] [ list tenant's namespaces ] -> pulsar-1/bin/pulsar-admin namespaces list t1
+"t1/ns1"
+[2022-05-03 09:28:57] [ get tenant's clusters ] -> pulsar-1/bin/pulsar-admin namespaces get-clusters t1/ns1
+"pulsar_archie_cluster"
+[2022-05-03 09:28:57] [pulsar-client produce][√] 10 messages successfully produced
+[2022-05-03 09:28:57] [pulsar-client consume] Now it's your turn to test. Please execute consume command like:
+pulsar-1/bin/pulsar-client consume persistent://t1/ns1/test -n 10 -s "consumer-test"  -t "Exclusive" -p "Earliest"
+ _   _  _     ______        _                    _ 
+| | | |(_)    | ___ \      | |                  | |
+| |_| | _     | |_/ /_   _ | | ___   __ _  _ __ | |
+|  _  || |    |  __/| | | || |/ __| / _` || '__|| |
+| | | || | _  | |   | |_| || |\__ \| (_| || |   |_|
+\_| |_/|_|( ) \_|    \__,_||_||___/ \__,_||_|   (_)
+          |/                                      
 ```
 
 
