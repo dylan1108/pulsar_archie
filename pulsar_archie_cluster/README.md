@@ -25,8 +25,8 @@ One script to (re)deploy Pulsar in pulsar-archie-cluster mode.
 
 ```shell
 # Clone this repo
-$ git clone https://github.com/futeng/pulsar-archie-cluster.git 
-$ cd pulsar-archie-cluster/
+$ git clone git@github.com:dylan1108/pulsar_archie.git
+$ cd pulsar_archie/pulsar-archie-cluster/
 
 # Put your apache-pulsar tarball in the `pulsar-archie-cluster` directory (keep in same directory)
 # for example download from CDN (take version of 2.9.1)
