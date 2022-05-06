@@ -11,5 +11,6 @@
     <modules>
         <module>pulsar_archie_base</module>
         <module>pulsar_archie_cluster</module>
+        <module>pulsar_archie_springboot_starter</module>
     </modules>
 </project>
