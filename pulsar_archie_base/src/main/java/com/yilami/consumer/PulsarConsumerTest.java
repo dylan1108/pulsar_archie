@@ -14,7 +14,7 @@ public class PulsarConsumerTest {
         //2. 基于客户端构建消费者对象
 
         Consumer<String> consumer = pulsarClient.newConsumer(Schema.STRING)
-                .topic("persistent://t1/ns1/t_topicWithPartition")
+                .topic("persistent://yilami/ns1/topic_5_partition")
                 .subscriptionName("test")
                 .subscriptionInitialPosition(SubscriptionInitialPosition.Earliest)
                 .subscriptionType(SubscriptionType.Exclusive)

@@ -18,7 +18,7 @@ public class PulsarProducerWithTest {
         //2. 通过客户端创建生产者的对象
 
         Producer<String> producer = pulsarClient.newProducer(Schema.STRING)
-                .topic("persistent://t1/ns1/test")
+                .topic("persistent://yilami/ns1/topic_5_partition")
                 .create();
         Random random = new Random(10000);
 

@@ -19,7 +19,7 @@ public class _01_createTenants {
         HashSet<String> allowedClusters = new HashSet<>();
         allowedClusters.add("pulsar_pseudo_cluster");
         TenantInfo config = TenantInfo.builder().allowedClusters(allowedClusters).build();
-        pulsarAdmin.tenants().createTenant("itcast_pulsar_t",config);
+        pulsarAdmin.tenants().createTenant("yilami",config);
 
         // 2.2: 查看当前有那些租户
         /*List<String> tenants = pulsarAdmin.tenants().getTenants();

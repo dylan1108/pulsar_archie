@@ -13,7 +13,7 @@ public class _02_createNamespace {
         //2. 执行相关的操作
 
         //2.1 如何创建名称空间
-         pulsarAdmin.namespaces().createNamespace("itcast_pulsar_t/itcast_pulsar_n");
+         pulsarAdmin.namespaces().createNamespace("yilami/ns1");
 
         //2.2 获取在某个租户下, 一共有那些名称空间:
         /*List<String> namespaces = pulsarAdmin.namespaces().getNamespaces("itcast_pulsar_t");
